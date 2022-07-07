@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "875376648521",
+    "firebase_url": "https://warungku-d770e-default-rtdb.firebaseio.com",
+    "project_id": "warungku-d770e",
+    "storage_bucket": "warungku-d770e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875376648521:android:b2288ad7c8d3be9477fa98",
+        "android_client_info": {
+          "package_name": "com.testing.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875376648521-c0svnvidhmcaqger9egemttj7uc9ch88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.testing.myapplication",
+            "certificate_hash": "d6ee5c58110a0fec923ebbfea4c23a11c954f47b"
+          }
+        },
+        {
+          "client_id": "875376648521-dmgso4ept8kn238mqlglsg86r3rd7a3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBntQ-88DJwJhsn_xpeHGLQUc47dufqGh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875376648521-dmgso4ept8kn238mqlglsg86r3rd7a3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
