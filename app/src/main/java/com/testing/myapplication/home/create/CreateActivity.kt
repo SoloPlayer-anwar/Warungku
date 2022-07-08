@@ -2,6 +2,7 @@ package com.testing.myapplication.home.create
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -60,13 +61,42 @@ class CreateActivity : AppCompatActivity(), CreateContract.View {
         }
 
         binding.ivProduct.setOnClickListener {
-            ImagePicker.with(this)
-                .galleryOnly()
-                .cropSquare()
-                .start()
+            showDialogCamera()
         }
 
         initView()
+    }
+
+    private fun showDialogCamera() {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        // set title dialog
+        alertDialogBuilder.setTitle("Camera or Galery")
+
+        // set pesan dari dialog
+        alertDialogBuilder
+            .setMessage("Klik dari salah satu")
+            .setIcon(R.drawable.ic_launcher_background)
+            .setCancelable(true)
+            .setPositiveButton(
+                "Galeri"
+            ) { _, id ->
+                ImagePicker.with(this)
+                    .galleryOnly()
+                    .cropSquare()
+                    .start()
+            }
+            .setNegativeButton(
+                "Camera"
+            ) { dialog, _ ->
+                ImagePicker.with(this)
+                    .cameraOnly()
+                    .start()
+            }
+
+        val alertDialog: AlertDialog = alertDialogBuilder.create()
+
+        alertDialog.show()
     }
 
     private fun initView() {
@@ -207,7 +237,9 @@ class CreateActivity : AppCompatActivity(), CreateContract.View {
         @SuppressLint("SetTextI18n")
         override fun onLocationResult(p0: LocationResult) {
             val lastLocation = p0.lastLocation
-            binding.tvLong.text = "${lastLocation?.latitude}, ${lastLocation?.latitude}"
+            lat = lastLocation!!.latitude
+            long = lastLocation.longitude
+            binding.tvLong.text = "${lastLocation.latitude}, ${lastLocation.latitude}"
 
         }
     }

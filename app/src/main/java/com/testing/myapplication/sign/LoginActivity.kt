@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import androidx.core.content.res.ResourcesCompat
 import com.google.gson.Gson
 import com.testing.myapplication.R
@@ -15,6 +16,7 @@ import com.testing.myapplication.signup.RegisterPresenter
 import com.testing.myapplication.utils.Warungku
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
     private lateinit var binding: ActivityLoginBinding
@@ -43,12 +45,12 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             val password = binding.etPassword.text.toString()
 
             when {
-                email.isEmpty() -> {
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty() -> {
                     binding.textInputLayout.error = "Email Harus Valid"
                     binding.textInputLayout.requestFocus()
                 }
 
-                password.isEmpty() -> {
+                password.length < 6 -> {
                     binding.textInputLayout2.error = "Password minimal 6 Karakter"
                     binding.textInputLayout2.requestFocus()
                 }

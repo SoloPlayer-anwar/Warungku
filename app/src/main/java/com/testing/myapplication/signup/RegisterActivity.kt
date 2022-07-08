@@ -2,6 +2,8 @@ package com.testing.myapplication.signup
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -34,18 +36,18 @@ class RegisterActivity : AppCompatActivity(),RegisterContract.View {
 
             when {
 
-                email.isEmpty() -> {
-                    binding.textInputLayout.error = "Isi format email anda"
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty() -> {
+                    binding.textInputLayout.error = "Harus email format nya"
                     binding.textInputLayout.requestFocus()
                 }
 
-                etPassword.isEmpty() -> {
+                etPassword.length < 6 -> {
                     binding.textInputLayout1.error = "Isi Password minimal 6 karakter"
                     binding.textInputLayout1.requestFocus()
                 }
 
-                etpasswordRetry.isEmpty() -> {
-                    binding.textInputLayout2.error = "Isi password minimal 6 karakter"
+                etpasswordRetry != etPassword -> {
+                    binding.textInputLayout2.error = "Password Harus sama"
                     binding.textInputLayout2.requestFocus()
                 }
 
@@ -88,8 +90,8 @@ class RegisterActivity : AppCompatActivity(),RegisterContract.View {
     override fun regisFailed(message: String) {
         MotionToast.createToast(this,
             "Failed 😍",
-            "Sudah Pernah Terdaftar",
-            MotionToastStyle.SUCCESS,
+            "Email harus valid & password Minimal 6 Karakter",
+            MotionToastStyle.ERROR,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
             ResourcesCompat.getFont(this,R.font.helvetica_regular))

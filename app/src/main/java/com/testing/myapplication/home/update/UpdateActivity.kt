@@ -2,6 +2,7 @@ package com.testing.myapplication.home.update
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -88,10 +89,7 @@ class UpdateActivity : AppCompatActivity(), UpdateContract.View {
         binding.etAddress.setText("${data?.alamatWarung}")
 
         binding.ivProduct.setOnClickListener {
-            ImagePicker.with(this)
-                .galleryOnly()
-                .cropSquare()
-                .start()
+            showDialogCamera()
         }
 
         binding.btnAdd.setOnClickListener {
@@ -120,6 +118,38 @@ class UpdateActivity : AppCompatActivity(), UpdateContract.View {
                 }
             }
         }
+    }
+
+    private fun showDialogCamera() {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        // set title dialog
+        alertDialogBuilder.setTitle("Camera or Galery")
+
+        // set pesan dari dialog
+        alertDialogBuilder
+            .setMessage("Klik dari salah satu")
+            .setIcon(R.drawable.ic_launcher_background)
+            .setCancelable(true)
+            .setPositiveButton(
+                "Galeri"
+            ) { _, id ->
+                ImagePicker.with(this)
+                    .galleryOnly()
+                    .cropSquare()
+                    .start()
+            }
+            .setNegativeButton(
+                "Camera"
+            ) { dialog, _ ->
+                ImagePicker.with(this)
+                    .cameraOnly()
+                    .start()
+            }
+
+        val alertDialog: AlertDialog = alertDialogBuilder.create()
+
+        alertDialog.show()
     }
 
     private fun addressPrompt() {
