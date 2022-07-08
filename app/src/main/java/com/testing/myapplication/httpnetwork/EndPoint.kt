@@ -1,6 +1,7 @@
 package com.testing.myapplication.httpnetwork
 
 import com.testing.myapplication.response.Coin
+import com.testing.myapplication.response.create.CreateResponse
 import com.testing.myapplication.response.product.ProductResponse
 import com.testing.myapplication.response.sign.SignResponse
 import io.reactivex.Observable
@@ -23,11 +24,25 @@ interface EndPoint {
 
     @Multipart
     @POST("createProduct")
-    fun komentar    (@Query("name_warung") nameComment:String,
-                     @Query("alamat_warung") statusComment: String,
-                     @Query("lat") category:String,
-                     @Query("long") comment:String,
-                     @Part photo_warung: MultipartBody.Part):Observable<ProductResponse>
+    fun create (@Query("name_warung") name_warung:String,
+                @Query("alamat_warung") alamat_warung: String,
+                @Query("lat") lat:Double,
+                @Query("long") long:Double,
+                @Part photo_warung: MultipartBody.Part):Observable<Coin<CreateResponse>>
 
 
+    @GET("product")
+    fun getHome():Observable<ProductResponse>
+
+    @POST("deleteProduct/{id}")
+    fun deleteProduct (@Path(value = "id") id:Int): Observable<Coin<CreateResponse>>
+
+    @Multipart
+    @POST("updateProduct/{id}")
+    fun updateProduct(@Path(value = "id")id:Int,
+                      @Query("name_warung") nameWarung:String,
+                      @Query("alamat_warung") alamatWarung:String,
+                      @Query("lat") lat:Double,
+                      @Query("long") long:Double,
+                      @Part photo_warung: MultipartBody.Part):Observable<Coin<CreateResponse>>
 }

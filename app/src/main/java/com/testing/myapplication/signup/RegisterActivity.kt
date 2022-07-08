@@ -87,8 +87,8 @@ class RegisterActivity : AppCompatActivity(),RegisterContract.View {
 
     override fun regisFailed(message: String) {
         MotionToast.createToast(this,
-            "Hurray success 😍",
-            "Upload Completed successfully!",
+            "Failed 😍",
+            "Sudah Pernah Terdaftar",
             MotionToastStyle.SUCCESS,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,

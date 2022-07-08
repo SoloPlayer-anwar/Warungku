@@ -1,4 +1,4 @@
-package com.testing.myapplication.home.create
+package com.testing.myapplication.home.update
 
 import android.net.Uri
 import com.testing.myapplication.httpnetwork.HttpClient
@@ -10,12 +10,14 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-class CreatePresenter(private val view: CreateContract.View):CreateContract.Presenter {
-    private val mCompositeDisposable : CompositeDisposable?
+class UpdatePresenter(private val view: UpdateContract.View): UpdateContract.Presenter {
+    private val mCompositeDisposable: CompositeDisposable?
     init {
         mCompositeDisposable = CompositeDisposable()
     }
-    override fun submitCreate(
+
+    override fun submitUpdate(
+        id:Int,
         nameWarung: String,
         alamatWarung: String,
         lat: Double,
@@ -27,26 +29,26 @@ class CreatePresenter(private val view: CreateContract.View):CreateContract.Pres
         val imageRequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), image)
         val imageParams = MultipartBody.Part.createFormData("photo_warung", image.name, imageRequestBody)
 
-
-        val disposable = HttpClient.getInstance().getApi()!!.create(
-            nameWarung,alamatWarung,lat,long,imageParams
+        val disposable = HttpClient.getInstance().getApi()!!.updateProduct(
+            id, nameWarung, alamatWarung, lat, long, imageParams
         )
+
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 when(it.meta.status.equals("success", true)) {
                     true -> {
-                        it.data?.let { it1 -> view.createSuccess(it1) }
+                        it.data?.let { it1 -> view.updateSuccess(it1) }
                         view.showLoading(false)
                     }
 
                     false -> {
-                        view.createFailure(it.meta.message)
+                        view.updateFailure(it.meta.message)
                         view.showLoading(false)
                     }
                 }
             }, {
-                view.createFailure(it.message.toString())
+                view.updateFailure(it.message.toString())
                 view.showLoading(false)
             })
 
@@ -58,5 +60,4 @@ class CreatePresenter(private val view: CreateContract.View):CreateContract.Pres
     override fun unSubscribe() {
         mCompositeDisposable?.clear()
     }
-
 }

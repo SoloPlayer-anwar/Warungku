@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_create.xml" value="0.20416666666666666" />
+        <entry key="..\:/Warungsaya/app/src/main/res/drawable/ic_close_circle_fill.xml" value="0.2169230769230769" />
+        <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_create.xml" value="0.2" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
-        <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_update.xml" value="0.20416666666666666" />
+        <entry key="..\:/Warungsaya/app/src/main/res/layout/activity_update.xml" value="0.22" />
+        <entry key="..\:/Warungsaya/app/src/main/res/layout/gps_dialog.xml" value="0.20416666666666666" />
+        <entry key="..\:/Warungsaya/app/src/main/res/layout/item_update_adapter.xml" value="0.22" />
         <entry key="..\:/Warungsaya/app/src/main/res/layout/loading_dialog.xml" value="0.20416666666666666" />
       </map>
     </option>
