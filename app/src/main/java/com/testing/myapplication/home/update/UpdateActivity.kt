@@ -109,10 +109,9 @@ class UpdateActivity : AppCompatActivity(), UpdateContract.View {
                     binding.textInputLayout1.requestFocus()
                 }
 
-                tvLong == "Pilih lokasi di samping" -> {
+                long == 0.0 -> {
                     addressPrompt()
                 }
-
                 else -> {
                     presenter.submitUpdate(id!!, nameWarung, alamatWarung, lat, long, filePath!!)
                 }

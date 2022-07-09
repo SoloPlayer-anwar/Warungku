@@ -103,23 +103,21 @@ class CreateActivity : AppCompatActivity(), CreateContract.View {
         binding.btnAdd.setOnClickListener {
             val nameWarung = binding.etName.text.toString()
             val alamatWarung = binding.etAddress.text.toString()
-            val tvLatLong = binding.tvLong.text.toString()
 
             when {
+
                 nameWarung.isEmpty() -> {
-                    binding.textInputLayout.error = "Isi nama warung"
+                    binding.textInputLayout.error = "isi nama warung anda"
                     binding.textInputLayout.requestFocus()
                 }
-
                 alamatWarung.isEmpty() -> {
-                    binding.textInputLayout1.error = "isi alamat warung"
+                    binding.textInputLayout1.error = "isi alamat warung anda"
                     binding.textInputLayout1.requestFocus()
                 }
 
-                tvLatLong == "Pilih lokasi di samping" -> {
+                long == 0.0 -> {
                     addressPrompt()
                 }
-
                 else -> {
                     presenter.submitCreate(nameWarung, alamatWarung, lat, long, filePath!!)
                 }
